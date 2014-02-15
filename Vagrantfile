@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     default.vm.box_url = "http://nitron-vagrant.s3-website-us-east-1.amazonaws.com/vagrant_ubuntu_12.04.3_amd64_virtualbox.box"
     default.vm.network "forwarded_port", guest: 8888, host: 58888, host_ip: "0.0.0.0"
     default.vm.provision :shell, :path => "vagrant/shell/main.sh"
+    config.vm.synced_folder "../course/", "/course"
     default.vm.provision :puppet do |puppet|
       puppet.module_path = "vagrant/puppet/modules"
       puppet.manifests_path = "vagrant/puppet"
